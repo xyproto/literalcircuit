@@ -1,4 +1,4 @@
-package circuit
+package literalcircuit
 
 import (
 	"fmt"
@@ -50,9 +50,9 @@ var mainCircuit = &GateTable{
 
 func TestAdder(t *testing.T) {
 	circuit := NewCircuit()
-	circuit.Register("xor", xor)
-	circuit.Register("and", and)
-	circuit.RegisterConnection("main", mainCircuit)
+	circuit.RegisterTruthTable("xor", xor)
+	circuit.RegisterTruthTable("and", and)
+	circuit.RegisterGateTable("main", mainCircuit)
 	output := circuit.Run([]string{"1 -> main.0", "0 -> main.1"}, []string{"main.0", "main.1"})
 	fmt.Println("The output after putting 1 into main.0 and 0 into main.1 is:", output)
 }

@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/xyproto/circuit"
+	lc "github.com/xyproto/literalcircuit"
 )
 
 func main() {
 	fn := "circuit1.md"
 	fmt.Printf("Loading literal circuit: %s...", fn)
-	_, err := circuit.Load("circuit1.md")
+	_, err := lc.Load("circuit1.md")
 	if err != nil {
 		panic(err)
 	}

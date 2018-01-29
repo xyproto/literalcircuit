@@ -1,4 +1,4 @@
-package circuit
+package literalcircuit
 
 import (
 	"github.com/xyproto/bits"
@@ -23,8 +23,8 @@ func (gt *GateTable) String() string {
 // a collection of connections between components (gate table expressions)
 // and the name of the main list of gate table expressions, if there are several disconnected circuits.
 type Circuit struct {
-	gateMap  map[string]*bits.TruthTable
-	connMap map[string]*GateTable
+	gateMap     map[string]*bits.TruthTable
+	connMap     map[string]*GateTable
 	mainCircuit string // the name of a GateTable in the connections map
 }
 
