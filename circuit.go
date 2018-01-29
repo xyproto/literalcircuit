@@ -79,8 +79,7 @@ func Load(filename string, verbose bool) (*Circuit, error) {
 			// This is a line in a truth table or gate table
 			if !inGateTable && !inTruthTable && strings.Contains(line, ":") {
 				inGateTable = true
-			}
-			if !inGateTable && !inTruthTable {
+			} else if !inGateTable && !inTruthTable {
 				inTruthTable = true
 			}
 			if inGateTable {
