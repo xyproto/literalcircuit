@@ -27,7 +27,7 @@ func New() *Circuit {
 	return &c
 }
 
-// Register a gate, like "and" or "or", by using a name and a truth table
+// RegisterTruthTable registers a gate, like "and" or "or", by using a name and a truth table
 func (c *Circuit) RegisterTruthTable(name string, tt *bits.TruthTable) {
 	// If this panics, the circuit must be made with NewCircuit instead of &Circuit{}
 	c.gateMap[name] = tt
@@ -36,7 +36,7 @@ func (c *Circuit) RegisterTruthTable(name string, tt *bits.TruthTable) {
 	}
 }
 
-// Register a connection with a name and a gate table
+// RegisterGateTable registers connections between gates, with a name and a gate table
 func (c *Circuit) RegisterGateTable(name string, gt *GateTable) {
 	// If this panics, the circuit must be made with NewCircuit instead of &Circuit{}
 	c.connMap[name] = gt
@@ -69,7 +69,9 @@ func Load(filename string, verbose bool) (*Circuit, error) {
 	truthTable := &bits.TruthTable{}
 	gateTable := &GateTable{}
 	c := New()
-	// Appending "# done" is a sneaky way of not having an additional check after the for loop for unprocessed items that were gathered
+	// Appending "# done" to the data is a sneaky way of not having an
+	// additional check after the for loop for unprocessed items that were
+	// gathered but not registered.
 	data = append(data, []byte("# done")...)
 	for _, byteLine := range bytes.Split(data, []byte("\n")) {
 		line := string(byteLine)
