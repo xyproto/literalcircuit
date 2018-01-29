@@ -6,7 +6,7 @@ This repository provides four things:
 
 * The `literalcircuit` package for Go.
 * Example usage of `literalcircuit` in the `examples` directory.
-* The `lcp` executable, for parsing, running and testing Literal Circuit files.
+* The `lcp` executable, for parsing, running and testing Literal Circuit files (WIP!).
 * The Literal Circuit File Format Spec below.
 
 ## Installation
