@@ -54,9 +54,9 @@ A circuit, with connections between gates, can be defined by a GateTable.
 * The arrow `->` is used to show what connects to what.
 * `i0` is the 0th input bit. `i1` is the 1st input bit. etc.
 * `o0` is the 0th output bit. `o1` is the 1st output bit. etc.
-* A colon (`:`)  can be used to seperate multiple statements on one line.
+* A colon (`:`)  can be used to separate multiple statements on one line.
 * A name or alias of a gate (as defined by a truth table) can be used in the circuit.
-* `.i0` and `.o0` can be used together with names or aliases of gates to select input and output bit posisions.
+* `.i0` and `.o0` can be used together with names or aliases of gates to select input and output bit positions.
 
 ### Example 1: connecting inputs to "A" and then "A" to outputs
 
@@ -76,8 +76,8 @@ The same is done for input bit 1, through A, and to output bit 1.
 
 ## Regular text
 
-* Text that does not begin with either `# ` or four spaces is ignored.
-* This means that it's completely acceptible (and encouraged) to include an ASCII-art diagram of the circuit in the circuit file. Example:
+* Text that does not begin with either `# `, or with four spaces and then contains an arrow (`->`), is ignored.
+* This means that it's completely acceptable (and encouraged) to include an ASCII-art diagram of the circuit in the circuit file. Example:
 
 ```none
     i0 ----\
@@ -89,11 +89,13 @@ The same is done for input bit 1, through A, and to output bit 1.
     i3 --/
 ```
 
+The above diagram is indented with four spaces, but there are no arrows (`->`), which is why it works fine.
+
 * Explanations, comments, license and other information can also be included in the circuit.
 
 ## Expansion
 
-A word that does not end with a number, between two arrows, in the definition of a LogicGate, like this:
+A word that does not end with a number, between two arrows, in the definition of a GateTable, like this:
 
 `i0 -> and -> i1`
 
@@ -103,7 +105,7 @@ Will be expanded like this:
 
 # Go package
 
-This repository includes the `literalcircuit` package and an interpreter in `cmd`.
+This repository includes the `literalcircuit` package and an interpreter in the `lpc` directory.
 
 # General information
 
