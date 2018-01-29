@@ -1,5 +1,7 @@
 # Literal Circuit
 
+[![Build Status](https://travis-ci.org/xyproto/literalcircuit.svg?branch=master)](https://travis-ci.org/xyproto/literalcircuit) [![GoDoc](https://godoc.org/github.com/xyproto/literalcircuit?status.svg)](http://godoc.org/github.com/xyproto/literalcircuit) [![License](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/xyproto/literalcircuit/master/LICENSE) [![Report Card](https://img.shields.io/badge/go_report-A+-brightgreen.svg?style=flat)](http://goreportcard.com/report/xyproto/literalcircuit)
+
 ## Literal Circuit File Format Spec
 
 * Spec version: 0.1
