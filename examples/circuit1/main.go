@@ -8,7 +8,7 @@ import (
 func main() {
 	fn := "circuit1.md"
 	fmt.Printf("Loading literal circuit: %s...", fn)
-	_, err := lc.Load("circuit1.md")
+	_, err := lc.Load("circuit1.md", true)
 	if err != nil {
 		panic(err)
 	}

@@ -49,7 +49,7 @@ var mainCircuit = &GateTable{
 }
 
 func TestAdder(t *testing.T) {
-	circuit := NewCircuit()
+	circuit := New()
 	circuit.RegisterTruthTable("xor", xor)
 	circuit.RegisterTruthTable("and", and)
 	circuit.RegisterGateTable("main", mainCircuit)

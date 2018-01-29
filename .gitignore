@@ -14,3 +14,5 @@
 .glide/
 
 cmd/cmd
+examples/circuit1/circuit1
+lcp/lcp
