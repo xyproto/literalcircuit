@@ -32,7 +32,7 @@ func RunExpression(expr string, inputBits *bits.Bits) (string, error) {
 	}
 	// Check if the to field is o0, o1, o2 etc
 	if len(to) == 2 && to[0] == 'o' {
-		fmt.Println("EVENT: Push " + from + " out to " + to)
+		fmt.Println("EVENT: Push output from " + from + " to " + to)
 	}
 	return "", nil
 }

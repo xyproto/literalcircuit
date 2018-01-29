@@ -100,7 +100,7 @@ func Load(filename string, verbose bool) (*Circuit, error) {
 					aliases := strings.Split(strings.Split(name, ":")[1], ",")
 					for _, alias := range aliases {
 						if verbose {
-							fmt.Println("Registering a truth table for " + strings.TrimSpace(alias))
+							fmt.Println("Registering a truth table for alias " + strings.TrimSpace(alias))
 						}
 						c.RegisterTruthTable(strings.TrimSpace(alias), truthTable)
 					}
