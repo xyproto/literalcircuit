@@ -2,11 +2,13 @@
 
 [![Build Status](https://travis-ci.org/xyproto/literalcircuit.svg?branch=master)](https://travis-ci.org/xyproto/literalcircuit) [![GoDoc](https://godoc.org/github.com/xyproto/literalcircuit?status.svg)](http://godoc.org/github.com/xyproto/literalcircuit) [![License](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/xyproto/literalcircuit/master/LICENSE) [![Report Card](https://img.shields.io/badge/go_report-A+-brightgreen.svg?style=flat)](http://goreportcard.com/report/xyproto/literalcircuit)
 
+# WORK IN PROGRESS! NO RELEASE YET!
+
 This repository provides four things:
 
 * The `literalcircuit` package for Go.
 * Example usage of `literalcircuit` in the `examples` directory.
-* The `lcp` executable, for parsing, running and testing Literal Circuit files (WIP!).
+* The `lcp` executable, for parsing, running and testing Literal Circuit files.
 * The Literal Circuit File Format Spec below.
 
 ## Installation

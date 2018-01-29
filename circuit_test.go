@@ -21,8 +21,8 @@ var xor = &bits.TruthTable{
 }
 
 var mainGateTable = &GateTable{
-	"i0 -> and.0, and.0 -> o0",
-	"i1 -> and.1, and.1 -> o1",
+	"i0 -> and.0:and.0 -> o0",
+	"i1 -> and.1:and.1 -> o1",
 }
 
 // For testing the mainGateTable
