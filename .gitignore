@@ -13,10 +13,5 @@
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
 
-cmd/cmd
 examples/circuit1/circuit1
 lcp/lcp
-experiments/first/first
-experiments/second/second
-experiments/third/third
-experiments/fourth/fourth
