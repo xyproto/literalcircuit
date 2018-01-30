@@ -37,26 +37,49 @@ func RunExpression(expr string, inputBits *bits.Bits) (string, error) {
 	return "", nil
 }
 
-// Run takes input bits as a space separated string and returns
-// output bits as a space separated string.
-func (c *Circuit) Run(inputBitString string) string {
-	var b bits.Bits
-	for _, bitString := range strings.Split(inputBitString, " ") {
-		b = append(b, bits.NewBit(bitString))
-	}
+// Run takes input bits and returns an output bit.
+// Runs the circuit for N cycles.
+func (c *Circuit) Run(inputBits *bits.Bits, cycles uint64) bits.Bit {
 	for _, line := range *c.mainGateTable {
 		if strings.Contains(line, ":") {
 			for _, expr := range strings.Split(line, ":") {
-				RunExpression(expr, &b)
+				RunExpression(expr, inputBits)
 			}
 		} else {
-			RunExpression(line, &b)
+			RunExpression(line, inputBits)
 		}
 	}
-	return "0"
+	// TODO: Run the circuit and return the result
+	return bits.B0
 }
 
 // SelfTest returns true if a test TruthTable is set and returns the correct values
 func (c *Circuit) SelfTest() bool {
 	return true
+}
+
+// String2Bits converts a space-separated string of "0"s and "1"s to a pointer
+// to a slice of bits.Bit. Returns an error if an invalid string is given.
+func String2Bits(s string) (*bits.Bits, error) {
+	var gatheredBits bits.Bits
+	if strings.Contains(s, " ") {
+		for _, sbit := range strings.Split(s, " ") {
+			if sbit == "1" {
+				gatheredBits = append(gatheredBits, bits.B1)
+			} else if sbit == "0" {
+				gatheredBits = append(gatheredBits, bits.B0)
+			} else {
+				return nil, errors.New("Invalid bit: " + sbit)
+			}
+		}
+	} else {
+		if s == "1" {
+			gatheredBits = append(gatheredBits, bits.B1)
+		} else if s == "0" {
+			gatheredBits = append(gatheredBits, bits.B0)
+		} else {
+			return nil, errors.New("Invalid bit: " + s)
+		}
+	}
+	return &gatheredBits, nil
 }

@@ -47,38 +47,38 @@ func TestWrapXor(t *testing.T) {
 
 func TestWrapCombine(t *testing.T) {
 	// Set up circuit input bits
-	i0 := make(BitChan, 1) // size
-	i1 := make(BitChan, 1) // size
+	I0 := make(BitChan, 1) // size
+	I1 := make(BitChan, 1) // size
 
 	// ----------
 
 	// Set up input/output bits and run the xor gate as a goroutine
-	xor_i0 := i0
-	xor_i1 := i1
-	xor_o0 := make(BitChan, 1) // size
-	go WrapTruthTable(xor)(BitChans{xor_i0, xor_i1}, xor_o0)
+	xorI0 := I0
+	xorI1 := I1
+	xorO0 := make(BitChan, 1) // size
+	go WrapTruthTable(xor)(BitChans{xorI0, xorI1}, xorO0)
 
 	// Set up input/output bits and run the xor gate as a goroutine
-	and_i0 := xor_o0
-	and_i1 := i0               // Duplicate input bit 0 as and input bit 1 (will be fed B1 in a loop)
-	and_o0 := make(BitChan, 1) // size
-	go WrapTruthTable(and)(BitChans{and_i0, and_i1}, and_o0)
+	andI0 := xorO0
+	andI1 := I0               // Duplicate input bit 0 as and input bit 1 (will be fed B1 in a loop)
+	andO0 := make(BitChan, 1) // size
+	go WrapTruthTable(and)(BitChans{andI0, andI1}, andO0)
 
 	// Input the input bits into the circuit, for N cycles
 	go func(cycles int) {
 		for n := 0; n < cycles; n++ {
-			i0 <- bits.B1
-			i1 <- bits.B0
+			I0 <- bits.B1
+			I1 <- bits.B0
 		}
 	}(100)
 
 	// Set up the circuit output bit
-	o0 := and_o0
+	O0 := andO0
 
 	// ----------
 
 	// Block until we receive an output bit on o0
-	result := <-o0
+	result := <-O0
 
 	if result != bits.B1 {
 		t.Error("and(xor(1, 0), 1) should return 1")

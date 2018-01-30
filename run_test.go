@@ -2,6 +2,8 @@ package literalcircuit
 
 import (
 	"testing"
+
+	"github.com/xyproto/bits"
 )
 
 func TestTest(t *testing.T) {
@@ -20,8 +22,12 @@ func TestRun(t *testing.T) {
 	circuit.RegisterTruthTable("xor", xor)
 	circuit.RegisterTruthTable("and", and)
 	circuit.RegisterGateTable("main", mainGateTable)
-	output := circuit.Run("1 0")
-	if output != "0" {
+	b, err := String2Bits("1 0")
+	if err != nil {
+		t.Error(err)
+	}
+	output := circuit.Run(b, 100)
+	if output != bits.B0 {
 		t.Error("CIRCUIT RUN FAILED")
 	}
 }
