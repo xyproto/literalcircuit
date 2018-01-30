@@ -57,29 +57,3 @@ func (c *Circuit) Run(inputBits *bits.Bits, cycles uint64) bits.Bit {
 func (c *Circuit) SelfTest() bool {
 	return true
 }
-
-// String2Bits converts a space-separated string of "0"s and "1"s to a pointer
-// to a slice of bits.Bit. Returns an error if an invalid string is given.
-func String2Bits(s string) (*bits.Bits, error) {
-	var gatheredBits bits.Bits
-	if strings.Contains(s, " ") {
-		for _, sbit := range strings.Split(s, " ") {
-			if sbit == "1" {
-				gatheredBits = append(gatheredBits, bits.B1)
-			} else if sbit == "0" {
-				gatheredBits = append(gatheredBits, bits.B0)
-			} else {
-				return nil, errors.New("Invalid bit: " + sbit)
-			}
-		}
-	} else {
-		if s == "1" {
-			gatheredBits = append(gatheredBits, bits.B1)
-		} else if s == "0" {
-			gatheredBits = append(gatheredBits, bits.B0)
-		} else {
-			return nil, errors.New("Invalid bit: " + s)
-		}
-	}
-	return &gatheredBits, nil
-}

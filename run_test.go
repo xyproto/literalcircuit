@@ -22,7 +22,7 @@ func TestRun(t *testing.T) {
 	circuit.RegisterTruthTable("xor", xor)
 	circuit.RegisterTruthTable("and", and)
 	circuit.RegisterGateTable("main", mainGateTable)
-	b, err := String2Bits("1 0")
+	b, err := bits.StringToBits("1 0")
 	if err != nil {
 		t.Error(err)
 	}
