@@ -22,7 +22,7 @@ func WrapOneToManyGate(gate bits.OneToManyGate) ChanGate {
 		// Continuously gather all needed input bits and output the result as an output bit
 		for {
 			// Gather input bits
-			inputBits := make(bits.Bits, len(inputChans), len(inputChans))
+			inputBits := make(bits.Bits, len(inputChans))
 			for i, inputChan := range inputChans {
 				inputBits[i] = <-inputChan
 			}
