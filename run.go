@@ -9,7 +9,7 @@ import (
 	"github.com/xyproto/bits"
 )
 
-// RunExperssion runs a single arrow-expression, like "i0 -> xor.0"
+// RunExpression runs a single arrow-expression, like "i0 -> xor.0"
 func RunExpression(expr string, inputBits *bits.Bits) (string, error) {
 	if strings.Count(expr, "->") != 1 {
 		return "", errors.New("Expression does not contain exactly one arrow: " + expr)
