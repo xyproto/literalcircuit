@@ -2,6 +2,7 @@ package literalcircuit
 
 import (
 	"github.com/xyproto/bits"
+	"log"
 	"testing"
 )
 
@@ -58,7 +59,7 @@ func TestSpew(t *testing.T) {
 	I0 := make(BitChan, 1)
 	I1 := make(BitChan, 1)
 
-	stop := make(StopChan, 1)
+	stop := make(StopChan, 32)
 
 	go SpewBitsFromString("1 0", BitChans{I0, I1}, stop)
 
@@ -76,20 +77,17 @@ func TestSpew(t *testing.T) {
 			}
 			//log.Printf("TestSpew: i=%v a=%v b=%v\n", i, a, b)
 		}
-		stop <- true
+		<-stop
 	}()
-
-	// Wait for stop
-	<-stop
 }
 
 func TestWrapCombine(t *testing.T) {
 	// Set up circuit input bits
-	I0 := make(BitChan, 1)
-	I1 := make(BitChan, 1)
+	I0 := make(BitChan, 32)
+	I1 := make(BitChan, 32)
 
 	// Stopping mechanism
-	stop := make(StopChan, 1)
+	stop := make(StopChan, 32)
 	stopConsumers := 0 // gate counter, used when stopping all of them
 
 	// ----------
@@ -97,14 +95,14 @@ func TestWrapCombine(t *testing.T) {
 	// Set up input/output bits and run the xor gate as a goroutine
 	xorI0 := I0
 	xorI1 := I1
-	xorO0 := make(BitChan, 1) // size
+	xorO0 := make(BitChan, 32) // size
 	go WrapTruthTable("XOR", xor)(BitChans{xorI0, xorI1}, xorO0, stop)
 	stopConsumers++
 
 	// Set up input/output bits and run the xor gate as a goroutine
 	andI0 := xorO0
-	andI1 := I0               // Duplicate input bit 0 as and input bit 1 (will be fed B1 in a loop)
-	andO0 := make(BitChan, 1) // size
+	andI1 := I0                // Duplicate input bit 0 as and input bit 1 (will be fed B1 in a loop)
+	andO0 := make(BitChan, 32) // size
 	go WrapTruthTable("AND", and)(BitChans{andI0, andI1}, andO0, stop)
 	stopConsumers++
 
@@ -126,6 +124,8 @@ func TestWrapCombine(t *testing.T) {
 	for x := 0; x < stopConsumers; x++ {
 		stop <- true
 	}
+
+	log.Println("RESULT", result)
 
 	if result != bits.B1 {
 		t.Error("and(xor(1, 0), 1) should return 1")

@@ -1,6 +1,7 @@
 TODO
 ----
 
+- [ ] Introduce a tick channel for triggering gates, also introduce the concept of 0, 1 or nothing
 - [ ] Implement a way to run circuits
 - [ ] Implement a half-adder
 - [ ] Implement the standalone lcp parser
