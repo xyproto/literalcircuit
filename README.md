@@ -27,9 +27,9 @@ Place `~/go/bin` or `$GOPATH/bin` in the `PATH` if needed.
 
 ## Defining a truth table
 
-The name comes first, after `# `:
+The name comes first, after `### `:
 
-    # name
+    ### name
 
 Then comes the truth table, with one or more inputs, and arrow, and one or more outputs:
 
@@ -38,7 +38,7 @@ Then comes the truth table, with one or more inputs, and arrow, and one or more 
 
 ### Example 1: xor
 
-    # xor
+    ### xor
 
     0 0 -> 0
     0 1 -> 1
@@ -47,7 +47,7 @@ Then comes the truth table, with one or more inputs, and arrow, and one or more 
 
 ### Example 2: and
 
-    # and
+    ### and
 
     0 0 -> 0
     0 1 -> 0
@@ -56,7 +56,7 @@ Then comes the truth table, with one or more inputs, and arrow, and one or more 
 
 ### Example 3: or, with aliases A and B
 
-    # or: A, B
+    ### or: A, B
 
     0 0 -> 0
     0 1 -> 1
@@ -81,6 +81,8 @@ A circuit, with connections between gates, can be defined by a GateTable.
 
     # OR Circuit 1
 
+    ### circuit
+
     i0 -> A.i0:A.o0 -> o0
     i1 -> A.i1:A.o1 -> o1
 
@@ -92,10 +94,11 @@ The same is done for input bit 1, through A, and to output bit 1.
 * If a truth table is named "test", it will be used for testing the main circuit.
 * If a GateTable is named "main", then that is considered to be the main circuit.
 * If there is only one GateTable, then that is considered to be the main circuit.
+* `### ` is used to prefix names
 
 ## Regular text
 
-* Text that does not begin with either `# `, or with four spaces and then contains an arrow (`->`), is ignored.
+* Text that does not begin with either `# `, `### `, or with four spaces and then contains an arrow (`->`), is ignored.
 * This means that it's completely acceptable (and encouraged) to include an ASCII-art diagram of the circuit in the circuit file. Example:
 
 ```none
